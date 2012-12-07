@@ -1,3 +1,6 @@
 [submodule "mapnik"]
 	path = mapnik
 	url = https://github.com/PaulWagener/mapnik.git
+[submodule "libpng"]
+	path = libpng
+	url = git://libpng.git.sourceforge.net/gitroot/libpng/libpng
