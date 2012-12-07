@@ -1,0 +1,3 @@
+[submodule "mapnik"]
+	path = mapnik
+	url = https://github.com/PaulWagener/mapnik.git
