@@ -20,3 +20,6 @@
 [submodule "libicu_host"]
 	path = libicu_host
 	url = https://github.com/svn2github/libicu.git
+[submodule "boost"]
+	path = boost
+	url = https://github.com/PaulWagener/boost-svn.git

@@ -11,7 +11,7 @@ update:
 
 # Build separate architectures
 build_arches:
-	make ${CURDIR}/build/armv7/lib/libmapnik.a ARCH=armv7
+	${MAKE} ${CURDIR}/build/armv7/lib/libmapnik.a ARCH=armv7
 
 PREFIX = ${CURDIR}/build/${ARCH}
 LIBDIR = ${PREFIX}/lib
@@ -59,32 +59,32 @@ ${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.
 
 # LibPNG
 ${LIBDIR}/libpng.a:
-	cd libpng && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && make clean install
+	cd libpng && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
 
 # LibProj
 ${LIBDIR}/libproj.a:
-	cd libproj && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && make clean install
+	cd libproj && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
 
 # LibTiff
 ${LIBDIR}/libtiff.a:
-	cd libtiff && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && make clean install
+	cd libtiff && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
 
 # LibJpeg
 ${LIBDIR}/libjpeg.a:
-	cd libjpeg && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && make clean install
+	cd libjpeg && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
 
 # LibIcu
 libicu_host/config/icucross.mk:
-	cd libicu_host && ./configure && make
+	cd libicu_host && ./configure && ${MAKE}
 
 ${LIBDIR}/libicuuc.a: libicu_host/config/icucross.mk
 	touch ${CURDIR}/license.html
-	cd libicu && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS} -std=c++11 -I${CURDIR}/libicu/tools/tzcode" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --enable-static --prefix=${PREFIX} --with-cross-build=${CURDIR}/libicu_host && make clean install
+	cd libicu && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS} -std=c++11 -I${CURDIR}/libicu/tools/tzcode -DUCHAR_TYPE=uint16_t" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --enable-static --prefix=${PREFIX} --with-cross-build=${CURDIR}/libicu_host && ${MAKE} clean install
 
 clean:
 	rm -rf libmapnik.a
 	rm -rf build
-	cd libpng && make clean
-	cd libproj && make clean
-	cd libtiff && make clean
-	cd libjpeg && make clean
+	cd libpng && ${MAKE} clean
+	cd libproj && ${MAKE} clean
+	cd libtiff && ${MAKE} clean
+	cd libjpeg && ${MAKE} clean
