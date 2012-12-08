@@ -5,3 +5,6 @@
 [submodule "libpng"]
 	path = libpng
 	url = git://libpng.git.sourceforge.net/gitroot/libpng/libpng
+[submodule "libproj"]
+	path = libproj
+	url = git://github.com/svn2github/libproj.git
