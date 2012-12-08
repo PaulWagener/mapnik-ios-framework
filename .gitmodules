@@ -8,3 +8,6 @@
 [submodule "libproj"]
 	path = libproj
 	url = git://github.com/svn2github/libproj.git
+[submodule "libtiff"]
+	path = libtiff
+	url = git://github.com/DaGaMs/libtiff.git
