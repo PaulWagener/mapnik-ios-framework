@@ -11,3 +11,6 @@
 [submodule "libtiff"]
 	path = libtiff
 	url = git://github.com/DaGaMs/libtiff.git
+[submodule "libjpeg"]
+	path = libjpeg
+	url = https://github.com/LuaDist/libjpeg.git
