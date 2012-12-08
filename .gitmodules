@@ -1,6 +1,6 @@
 [submodule "mapnik"]
 	path = mapnik
-	url = git@github.com:PaulWagener/mapnik.git
+	url = git://github.com/PaulWagener/mapnik.git
 
 [submodule "libpng"]
 	path = libpng
