@@ -14,3 +14,9 @@
 [submodule "libjpeg"]
 	path = libjpeg
 	url = https://github.com/LuaDist/libjpeg.git
+[submodule "libicu"]
+	path = libicu
+	url = https://github.com/svn2github/libicu.git
+[submodule "libicu_host"]
+	path = libicu_host
+	url = https://github.com/svn2github/libicu.git
