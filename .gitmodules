@@ -23,3 +23,6 @@
 [submodule "boost"]
 	path = boost
 	url = https://github.com/PaulWagener/boost-svn.git
+[submodule "freetype"]
+	path = freetype
+	url = http://git.savannah.gnu.org/cgit/freetype/freetype2.git

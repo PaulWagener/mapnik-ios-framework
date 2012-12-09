@@ -27,7 +27,7 @@ CFLAGS = -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 CXXFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${IOS_SDK}/usr/lib -L${LIBDIR} -arch ${ARCH}
 
-${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a
+${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libfreetype.a
 	# Building architecture: ${ARCH}
 	cd mapnik && ./configure CXX=${CXX} CC=${CC} \
 		CUSTOM_CFLAGS="${CFLAGS} -I${IOS_SDK}/usr/include/libxml2" \
@@ -92,6 +92,10 @@ ${LIBDIR}/libboost_system.a: ${LIBDIR}/libicuuc.a
 		: <architecture>arm <target-os>iphone \n \
 		;" >> boost/tools/build/v2/user-config.jam
 	cd boost && ./bjam -a --build-dir=boost-build --stagedir=boost-stage --prefix=${PREFIX} toolset=darwin architecture=arm target-os=iphone  define=_LITTLE_ENDIAN link=static install
+
+# FreeType
+${LIBDIR}/libfreetype.a:
+	cd freetype && ./autogen.sh && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
 
 clean:
 	rm -rf libmapnik.a
