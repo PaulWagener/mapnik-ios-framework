@@ -91,7 +91,7 @@ ${LIBDIR}/libboost_system.a: ${LIBDIR}/libicuuc.a
 		: ${CXX} -miphoneos-version-min=5.0 -fvisibility=hidden -fvisibility-inlines-hidden ${CXXFLAGS} -I${INCLUDEDIR} -L${LIBDIR} \n \
 		: <architecture>arm <target-os>iphone \n \
 		;" >> boost/tools/build/v2/user-config.jam
-	cd boost && ./bjam -a --build-dir=boost-build --stagedir=boost-stage --prefix=`pwd`/../boost_arm toolset=darwin architecture=arm target-os=iphone  define=_LITTLE_ENDIAN link=static install
+	cd boost && ./bjam -a --build-dir=boost-build --stagedir=boost-stage --prefix=${PREFIX} toolset=darwin architecture=arm target-os=iphone  define=_LITTLE_ENDIAN link=static install
 
 clean:
 	rm -rf libmapnik.a
