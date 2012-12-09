@@ -15,6 +15,7 @@ build_arches:
 
 PREFIX = ${CURDIR}/build/${ARCH}
 LIBDIR = ${PREFIX}/lib
+INCLUDEDIR = ${PREFIX}/include
 
 XCODE_DEVELOPER = $(shell xcode-select --print-path)
 
@@ -26,7 +27,7 @@ CFLAGS = -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 CXXFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${IOS_SDK}/usr/lib -L${LIBDIR} -arch ${ARCH}
 
-${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a
+${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a
 	# Building architecture: ${ARCH}
 	cd mapnik && ./configure CXX=${CXX} CC=${CC} \
 		CUSTOM_CFLAGS="${CFLAGS} -I${IOS_SDK}/usr/include/libxml2" \
@@ -80,6 +81,17 @@ libicu_host/config/icucross.mk:
 ${LIBDIR}/libicuuc.a: libicu_host/config/icucross.mk
 	touch ${CURDIR}/license.html
 	cd libicu && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS} -std=c++11 -I${CURDIR}/libicu/tools/tzcode -DUCHAR_TYPE=uint16_t" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --enable-static --prefix=${PREFIX} --with-cross-build=${CURDIR}/libicu_host && ${MAKE} clean install
+
+# Boost
+${LIBDIR}/libboost_system.a: ${LIBDIR}/libicuuc.a
+	rm -rf boost-build boost-stage
+	cd boost && ./bootstrap.sh --with-libraries=thread,signals,filesystem,regex,system,date_time
+	cd boost && git checkout tools/build/v2/user-config.jam
+	echo "using darwin : iphone \n \
+		: ${CXX} -miphoneos-version-min=5.0 -fvisibility=hidden -fvisibility-inlines-hidden ${CXXFLAGS} -I${INCLUDEDIR} -L${LIBDIR} \n \
+		: <architecture>arm <target-os>iphone \n \
+		;" >> boost/tools/build/v2/user-config.jam
+	cd boost && ./bjam -a --build-dir=boost-build --stagedir=boost-stage --prefix=`pwd`/../boost_arm toolset=darwin architecture=arm target-os=iphone  define=_LITTLE_ENDIAN link=static install
 
 clean:
 	rm -rf libmapnik.a
