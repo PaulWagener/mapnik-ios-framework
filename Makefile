@@ -97,18 +97,31 @@ ${LIBDIR}/libboost_system.a: ${LIBDIR}/libicuuc.a
 ${LIBDIR}/libfreetype.a:
 	cd freetype && ./autogen.sh && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
 
+# Pixman
+${LIBDIR}/libpixman-1.a:
+	cd pixman && ./autogen.sh && env PNG_CFLAGS="-I${INCLUDEDIR}" PNG_LIBS="-L${LIBDIR} -lpng" \
+		CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+		LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} && make install
+
 # Cairo
-${LIBDIR}/libcairo.a:
-	#cd cairo && ./autogen.sh
+${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a
+	env NOCONFIGURE=1 cairo/autogen.sh
+
+	-patch -N cairo/src/cairo-quartz.h cairo-quartz.h.patch
+	-patch -N cairo/configure cairo_configure.patch
+
 	cd cairo && env \
 	{GTKDOC_DEPS_LIBS,VALGRIND_LIBS,xlib_LIBS,xlib_xrender_LIBS,xcb_LIBS,xlib_xcb_LIBS,xcb_shm_LIBS,qt_LIBS,drm_LIBS,gl_LIBS,glesv2_LIBS,cogl_LIBS,directfb_LIBS,egl_LIBS,FREETYPE_LIBS,FONTCONFIG_LIBS,LIBSPECTRE_LIBS,POPPLER_LIBS,LIBRSVG_LIBS,GOBJECT_LIBS,glib_LIBS,gtk_LIBS,png_LIBS,pixman_LIBS}=-L${LIBDIR} \
+	png_LIBS="-L${LIBDIR} -lpng15" \
 	png_CFLAGS=-I${INCLUDEDIR} \
 	pixman_CFLAGS=-I${INCLUDEDIR} \
+	pixman_LIBS="-L${LIBDIR} -lpixman-1" \
+	PKG_CONFIG_PATH=${LIBDIR}/pkgconfig \
 	PATH=${PREFIX}/bin:$$PATH CXX=${CXX} \
 	CC="${CC} ${CFLAGS} -I${INCLUDEDIR}/pixman-1" \
 	CFLAGS="${CFLAGS} -DCAIRO_NO_MUTEX=1" \
 	CXXFLAGS="-DCAIRO_NO_MUTEX=1 ${CXXFLAGS}" \
-	LDFLAGS="-framework Foundation -framework CoreGraphics ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft
+	LDFLAGS="-framework Foundation -framework CoreGraphics -lpng -lpixman-1 -lfreetype ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft && make clean install
 
 clean:
 	rm -rf libmapnik.a

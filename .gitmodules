@@ -32,3 +32,6 @@
 [submodule "cairomm"]
 	path = cairomm
 	url = git://git.cairographics.org/git/cairomm
+[submodule "pixman"]
+	path = pixman
+	url = git://anongit.freedesktop.org/pixman

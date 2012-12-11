@@ -1,0 +1,14 @@
+--- src/cairo-quartz.h	2012-12-09 22:12:27.000000000 +0100
++++ src/cairo-quartz.h	2012-11-29 14:30:48.000000000 +0100
+@@ -40,7 +40,10 @@
+ 
+ #if CAIRO_HAS_QUARTZ_SURFACE
+ 
+-#include <ApplicationServices/ApplicationServices.h>
++#include <CoreGraphics/CoreGraphics.h>
++#define ATSUFontID int
++#define FMFont int
++#define ATSFontRef int
+ 
+ CAIRO_BEGIN_DECLS
+ 
