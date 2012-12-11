@@ -26,3 +26,9 @@
 [submodule "freetype"]
 	path = freetype
 	url = http://git.savannah.gnu.org/cgit/freetype/freetype2.git
+[submodule "cairo"]
+	path = cairo
+	url = git://anongit.freedesktop.org/git/cairo
+[submodule "cairomm"]
+	path = cairomm
+	url = git://git.cairographics.org/git/cairomm

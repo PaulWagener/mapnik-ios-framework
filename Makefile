@@ -27,7 +27,7 @@ CFLAGS = -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 CXXFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${IOS_SDK}/usr/lib -L${LIBDIR} -arch ${ARCH}
 
-${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libfreetype.a
+${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libcairo.a ${LIBDIR}/libfreetype.a
 	# Building architecture: ${ARCH}
 	cd mapnik && ./configure CXX=${CXX} CC=${CC} \
 		CUSTOM_CFLAGS="${CFLAGS} -I${IOS_SDK}/usr/include/libxml2" \
@@ -96,6 +96,19 @@ ${LIBDIR}/libboost_system.a: ${LIBDIR}/libicuuc.a
 # FreeType
 ${LIBDIR}/libfreetype.a:
 	cd freetype && ./autogen.sh && env CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && ${MAKE} clean install
+
+# Cairo
+${LIBDIR}/libcairo.a:
+	#cd cairo && ./autogen.sh
+	cd cairo && env \
+	{GTKDOC_DEPS_LIBS,VALGRIND_LIBS,xlib_LIBS,xlib_xrender_LIBS,xcb_LIBS,xlib_xcb_LIBS,xcb_shm_LIBS,qt_LIBS,drm_LIBS,gl_LIBS,glesv2_LIBS,cogl_LIBS,directfb_LIBS,egl_LIBS,FREETYPE_LIBS,FONTCONFIG_LIBS,LIBSPECTRE_LIBS,POPPLER_LIBS,LIBRSVG_LIBS,GOBJECT_LIBS,glib_LIBS,gtk_LIBS,png_LIBS,pixman_LIBS}=-L${LIBDIR} \
+	png_CFLAGS=-I${INCLUDEDIR} \
+	pixman_CFLAGS=-I${INCLUDEDIR} \
+	PATH=${PREFIX}/bin:$$PATH CXX=${CXX} \
+	CC="${CC} ${CFLAGS} -I${INCLUDEDIR}/pixman-1" \
+	CFLAGS="${CFLAGS} -DCAIRO_NO_MUTEX=1" \
+	CXXFLAGS="-DCAIRO_NO_MUTEX=1 ${CXXFLAGS}" \
+	LDFLAGS="-framework Foundation -framework CoreGraphics ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft
 
 clean:
 	rm -rf libmapnik.a
