@@ -104,7 +104,7 @@ ${LIBDIR}/libpixman-1.a:
 		LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} && make install
 
 # Cairo
-${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a
+${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfreetype.a
 	env NOCONFIGURE=1 cairo/autogen.sh
 
 	-patch -N cairo/src/cairo-quartz.h cairo-quartz.h.patch
