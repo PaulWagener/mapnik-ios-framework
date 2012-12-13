@@ -157,9 +157,4 @@ ${CURDIR}/libsigc++:
 	mv libsigc++-2.3.1 libsigc++
 
 clean:
-	rm -rf libmapnik.a
-	rm -rf build
-	cd libpng && ${MAKE} clean
-	cd libproj && ${MAKE} clean
-	cd libtiff && ${MAKE} clean
-	cd libjpeg && ${MAKE} clean
+	rm -rf libmapnik.a build cairo freetype libicu libicu_host libjpeg libpng libproj libtiff mapnik pixman
