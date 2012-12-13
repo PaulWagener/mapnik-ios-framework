@@ -27,7 +27,7 @@ CFLAGS = -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 CXXFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${IOS_SDK}/usr/lib -L${LIBDIR} -arch ${ARCH}
 
-${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libcairo.a ${LIBDIR}/libfreetype.a
+${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libcairo.a ${LIBDIR}/libfreetype.a ${LIBDIR}/libcairomm-1.0.a 
 	# Building architecture: ${ARCH}
 	cd mapnik && ./configure CXX=${CXX} CC=${CC} \
 		CUSTOM_CFLAGS="${CFLAGS} -I${IOS_SDK}/usr/include/libxml2" \
@@ -123,14 +123,33 @@ ${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfr
 	CXXFLAGS="-DCAIRO_NO_MUTEX=1 ${CXXFLAGS}" \
 	LDFLAGS="-framework Foundation -framework CoreGraphics -lpng -lpixman-1 -lfreetype ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft && make clean install
 
+# CairoMM
+${LIBDIR}/libcairomm-1.0.a: ${CURDIR}/cairomm ${LIBDIR}/libsigc-2.0.a
+	cd cairomm && env \
+	CAIROMM_CFLAGS="-I${INCLUDEDIR} -I${INCLUDEDIR}/freetype2 -I${INCLUDEDIR}/cairo -I${INCLUDEDIR}/sigc++-2.0 -I${LIBDIR}/sigc++-2.0/include" \
+	CAIROMM_LIBS="-L${LIBDIR} -lcairo -lsigc-2.0" \
+	CXX=${CXX} \
+	CC=${CC} \
+	CFLAGS="${CFLAGS}" \
+	CXXFLAGS="-${CXXFLAGS}" \
+	LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --disable-shared && make clean install
+
+${CURDIR}/cairomm:
+	curl http://cairographics.org/releases/cairomm-1.10.0.tar.gz > cairomm.tar.gz
+	tar -xzf cairomm.tar.gz
+	rm cairomm.tar.gz
+	mv cairomm-1.10.0 cairomm
+	patch -Np0 < cairomm.patch
+
 # Libsigc++
-${LIBDIR}/libsigc-2.0.la: ${CURDIR}/libsigc++
+${LIBDIR}/libsigc-2.0.a: ${CURDIR}/libsigc++
 	cd libsigc++ && env LIBTOOL=${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool \
 	CXX=${CXX} \
 	CC=${CC} \
 	CFLAGS="${CFLAGS}" \
 	CXXFLAGS="${CXXFLAGS}" \
-	LDFLAGS="-Wl,-arch -Wl,armv7 -arch_only armv7 ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --disable-shared --enable-static
+	LDFLAGS="-Wl,-arch -Wl,armv7 -arch_only armv7 ${LDFLAGS}" \
+	./configure --host=arm-apple-darwin --prefix=${PREFIX} --disable-shared --enable-static && make clean install
 
 ${CURDIR}/libsigc++:
 	curl http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.3/libsigc++-2.3.1.tar.xz > libsigc++.tar.xz

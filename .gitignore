@@ -13,3 +13,5 @@
 *.a
 
 build
+libsigc++
+cairomm

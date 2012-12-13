@@ -1,0 +1,62 @@
+--- cairomm/cairomm/fontoptions.cc	2011-05-09 09:43:27.000000000 +0200
++++ cairomm/cairomm/fontoptions.cc	2012-12-13 11:40:09.000000000 +0100
+@@ -156,11 +156,13 @@
+ }
+ 
+ #ifdef CAIRO_HAS_FT_FONT
++#if 0
+ void FontOptions::substitute(FcPattern* pattern)
+ {
+   cairo_ft_font_options_substitute(cobj(), pattern);
+   check_object_status_and_throw_exception(*this);
+ }
++#endif
+ #endif // CAIRO_HAS_FT_FONT
+ 
+ } //namespace Cairo
+--- cairomm/cairomm/fontoptions.h	2011-05-09 09:43:27.000000000 +0200
++++ cairomm/cairomm/fontoptions.h	2012-12-13 11:32:07.000000000 +0100
+@@ -143,7 +143,7 @@
+    *
+    * @since 1.8
+    */
+-  void substitute(FcPattern* pattern);
++  //void substitute(FcPattern* pattern);
+ #endif // CAIRO_HAS_FT_FONT
+ 
+   typedef cairo_font_options_t cobject;
+--- cairomm/cairomm/fontface.h	2011-05-09 09:43:27.000000000 +0200
++++ cairomm/cairomm/fontface.h	2012-12-13 11:33:31.000000000 +0100
+@@ -471,11 +471,11 @@
+    *
+    * @since 1.8
+    */
+-  static RefPtr<FtFontFace> create(FcPattern* pattern);
++  //static RefPtr<FtFontFace> create(FcPattern* pattern);
+ 
+ protected:
+-  FtFontFace(FT_Face face, int load_flags);
+-  FtFontFace(FcPattern* pattern);
++  //FtFontFace(FT_Face face, int load_flags);
++  //FtFontFace(FcPattern* pattern);
+ };
+ 
+ #endif // CAIRO_HAS_FT_FONT
+--- cairomm/cairomm/fontface.cc	2011-05-09 09:43:27.000000000 +0200
++++ cairomm/cairomm/fontface.cc	2012-12-13 11:35:11.000000000 +0100
+@@ -377,6 +377,7 @@
+ 
+ #ifdef CAIRO_HAS_FT_FONT
+ 
++#if 0
+ RefPtr<FtFontFace>
+ FtFontFace::create(FT_Face face, int load_flags)
+ {
+@@ -403,6 +404,7 @@
+   check_status_and_throw_exception(cairo_font_face_status(m_cobject));
+ }
+ 
++#endif
+ #endif // CAIRO_HAS_FT_FONT
+ 
+ } //namespace Cairo
