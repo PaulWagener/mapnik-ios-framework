@@ -107,8 +107,7 @@ ${LIBDIR}/libpixman-1.a:
 ${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfreetype.a
 	env NOCONFIGURE=1 cairo/autogen.sh
 
-	-patch -N cairo/src/cairo-quartz.h cairo-quartz.h.patch
-	-patch -N cairo/configure cairo_configure.patch
+	-patch -Np0 < cairo.patch
 
 	cd cairo && env \
 	{GTKDOC_DEPS_LIBS,VALGRIND_LIBS,xlib_LIBS,xlib_xrender_LIBS,xcb_LIBS,xlib_xcb_LIBS,xcb_shm_LIBS,qt_LIBS,drm_LIBS,gl_LIBS,glesv2_LIBS,cogl_LIBS,directfb_LIBS,egl_LIBS,FREETYPE_LIBS,FONTCONFIG_LIBS,LIBSPECTRE_LIBS,POPPLER_LIBS,LIBRSVG_LIBS,GOBJECT_LIBS,glib_LIBS,gtk_LIBS,png_LIBS,pixman_LIBS}=-L${LIBDIR} \
