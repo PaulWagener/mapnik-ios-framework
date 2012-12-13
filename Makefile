@@ -123,6 +123,21 @@ ${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfr
 	CXXFLAGS="-DCAIRO_NO_MUTEX=1 ${CXXFLAGS}" \
 	LDFLAGS="-framework Foundation -framework CoreGraphics -lpng -lpixman-1 -lfreetype ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft && make clean install
 
+# Libsigc++
+${LIBDIR}/libsigc-2.0.la: ${CURDIR}/libsigc++
+	cd libsigc++ && env LIBTOOL=${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool \
+	CXX=${CXX} \
+	CC=${CC} \
+	CFLAGS="${CFLAGS}" \
+	CXXFLAGS="${CXXFLAGS}" \
+	LDFLAGS="-Wl,-arch -Wl,armv7 -arch_only armv7 ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --disable-shared --enable-static
+
+${CURDIR}/libsigc++:
+	curl http://ftp.gnome.org/pub/GNOME/sources/libsigc++/2.3/libsigc++-2.3.1.tar.xz > libsigc++.tar.xz
+	tar -xJf libsigc++.tar.xz
+	rm libsigc++.tar.xz
+	mv libsigc++-2.3.1 libsigc++
+
 clean:
 	rm -rf libmapnik.a
 	rm -rf build
