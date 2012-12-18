@@ -6,8 +6,8 @@ libmapnik.a: build_arches
 	echo "Making libmapnik or something"
 
 update:
-	git submodule init
-	git submodule update
+	#git submodule init
+	#git submodule update
 
 # Build separate architectures
 build_arches:
