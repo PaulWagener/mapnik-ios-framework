@@ -31,7 +31,7 @@ ${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.
 	# Building architecture: ${ARCH}
 	cd mapnik && ./configure CXX=${CXX} CC=${CC} \
 		CUSTOM_CFLAGS="${CFLAGS} -I${IOS_SDK}/usr/include/libxml2" \
-		CUSTOM_CXXFLAGS="${CXXFLAGS} -DUCHAR_TYPE=uint16_t -std=c++11 -I${IOS_SDK}/usr/include/libxml2" \
+		CUSTOM_CXXFLAGS="${CXXFLAGS} -DUCHAR_TYPE=uint16_t -I${IOS_SDK}/usr/include/libxml2" \
 		CUSTOM_LDFLAGS="${LDFLAGS}" \
 		FREETYPE_CONFIG=${PREFIX}/bin/freetype-config XML2_CONFIG=/bin/false \
 		{LTDL_INCLUDES,OCCI_INCLUDES,SQLITE_INCLUDES,RASTERLITE_INCLUDES}=. \
