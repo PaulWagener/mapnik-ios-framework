@@ -11,7 +11,9 @@ update:
 
 # Build separate architectures
 build_arches:
-	${MAKE} ${CURDIR}/build/armv7/lib/libmapnik.a ARCH=armv7
+	${MAKE} ${CURDIR}/build/armv7/lib/libmapnik.a ARCH=armv7 IOS_PLATFORM=iPhoneOS
+	${MAKE} ${CURDIR}/build/armv7s/lib/libmapnik.a ARCH=armv7s IOS_PLATFORM=iPhoneOS
+	${MAKE} ${CURDIR}/build/i386/lib/libmapnik.a ARCH=i386 IOS_PLATFORM=iPhoneSimulator
 
 PREFIX = ${CURDIR}/build/${ARCH}
 LIBDIR = ${PREFIX}/lib
@@ -19,7 +21,9 @@ INCLUDEDIR = ${PREFIX}/include
 
 XCODE_DEVELOPER = $(shell xcode-select --print-path)
 
-IOS_SDK = ${XCODE_DEVELOPER}/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
+# Pick latest SDK in the directory
+IOS_SDK_PARENT = ${XCODE_DEVELOPER}/Platforms/${IOS_PLATFORM}.platform/Developer/SDKs
+IOS_SDK = ${IOS_SDK_PARENT}/$(shell ls ${IOS_SDK_PARENT} | sort -r | head -n1)
 
 CXX = ${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 CC = ${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
@@ -147,7 +151,7 @@ ${LIBDIR}/libsigc-2.0.a: ${CURDIR}/libsigc++
 	CC=${CC} \
 	CFLAGS="${CFLAGS}" \
 	CXXFLAGS="${CXXFLAGS}" \
-	LDFLAGS="-Wl,-arch -Wl,armv7 -arch_only armv7 ${LDFLAGS}" \
+	LDFLAGS="-Wl,-arch -Wl,${ARCH} -arch_only ${ARCH} ${LDFLAGS}" \
 	./configure --host=arm-apple-darwin --prefix=${PREFIX} --disable-shared --enable-static && make clean install
 
 ${CURDIR}/libsigc++:
