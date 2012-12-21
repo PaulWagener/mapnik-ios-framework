@@ -1,8 +1,36 @@
 
 LIBRARY = libmapnik.a
 
-all: update libmapnik.a
-libmapnik.a: build_arches
+XCODE_DEVELOPER = $(shell xcode-select --print-path)
+IOS_PLATFORM ?= iPhoneOS
+
+# Pick latest SDK in the directory
+IOS_PLATFORM_DEVELOPER = ${XCODE_DEVELOPER}/Platforms/${IOS_PLATFORM}.platform/Developer
+IOS_SDK = ${IOS_PLATFORM_DEVELOPER}/SDKs/$(shell ls ${IOS_PLATFORM_DEVELOPER}/SDKs | sort -r | head -n1)
+
+all: update lib/libmapnik.a
+lib/libmapnik.a: build_arches
+	mkdir -p lib
+	mkdir -p include
+
+	# Copy includes
+	cp -R build/armv7/include/freetype2 include
+	cp -R build/armv7/include/mapnik include
+	cp -R build/armv7/include/boost include
+	cp -R build/armv7/include/unicode include
+	cp build/armv7/include/ft2build.h include
+	cp build/armv7/include/proj_api.h include
+
+	# Make fat libraries for all architectures
+	for file in build/armv7/lib/*.a; \
+		do name=`basename $$file .a`; \
+		${IOS_PLATFORM_DEVELOPER}/usr/bin/lipo -create \
+			-arch armv7 build/armv7/lib/$$name.a \
+			-arch armv7s build/armv7s/lib/$$name.a \
+			-arch i386 build/i386/lib/$$name.a \
+			-output lib/$$name.a \
+		; \
+		done;
 	echo "Making libmapnik or something"
 
 update:
@@ -11,25 +39,22 @@ update:
 
 # Build separate architectures
 build_arches:
-	${MAKE} ${CURDIR}/build/armv7/lib/libmapnik.a ARCH=armv7 IOS_PLATFORM=iPhoneOS
-	${MAKE} ${CURDIR}/build/armv7s/lib/libmapnik.a ARCH=armv7s IOS_PLATFORM=iPhoneOS
-	${MAKE} ${CURDIR}/build/i386/lib/libmapnik.a ARCH=i386 IOS_PLATFORM=iPhoneSimulator
+	${MAKE} arch ARCH=armv7 IOS_PLATFORM=iPhoneOS
+	${MAKE} arch ARCH=armv7s IOS_PLATFORM=iPhoneOS
+	${MAKE} arch ARCH=i386 IOS_PLATFORM=iPhoneSimulator
 
 PREFIX = ${CURDIR}/build/${ARCH}
 LIBDIR = ${PREFIX}/lib
 INCLUDEDIR = ${PREFIX}/include
-
-XCODE_DEVELOPER = $(shell xcode-select --print-path)
-
-# Pick latest SDK in the directory
-IOS_SDK_PARENT = ${XCODE_DEVELOPER}/Platforms/${IOS_PLATFORM}.platform/Developer/SDKs
-IOS_SDK = ${IOS_SDK_PARENT}/$(shell ls ${IOS_SDK_PARENT} | sort -r | head -n1)
 
 CXX = ${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 CC = ${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CFLAGS = -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 CXXFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${IOS_SDK}/usr/lib -L${LIBDIR} -arch ${ARCH}
+
+arch: ${LIBDIR}/libmapnik.a
+	# Making libmapnik 
 
 ${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libcairo.a ${LIBDIR}/libfreetype.a ${LIBDIR}/libcairomm-1.0.a 
 	# Building architecture: ${ARCH}
@@ -159,6 +184,7 @@ ${CURDIR}/libsigc++:
 	tar -xJf libsigc++.tar.xz
 	rm libsigc++.tar.xz
 	mv libsigc++-2.3.1 libsigc++
+	touch libsigc++
 
 clean:
-	rm -rf libmapnik.a build cairo freetype libicu libicu_host libjpeg libpng libproj libtiff mapnik pixman
+	rm -rf libmapnik.a build cairo cairomm libsigc++ boost freetype libicu libicu_host libjpeg libpng libproj libtiff mapnik pixman
