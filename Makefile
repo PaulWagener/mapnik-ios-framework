@@ -130,7 +130,7 @@ ${LIBDIR}/libfreetype.a:
 ${LIBDIR}/libpixman-1.a:
 	cd pixman && ./autogen.sh && env PNG_CFLAGS="-I${INCLUDEDIR}" PNG_LIBS="-L${LIBDIR} -lpng" \
 		CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-		LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} && make install
+		LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && make install
 
 # Cairo
 ${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfreetype.a
