@@ -1,0 +1,30 @@
+//
+// Prefix header for all source files of the 'osm editor' target in the 'osm editor' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#if defined __cplusplus
+// https://svn.boost.org/trac/boost/ticket/5010
+#undef nil
+#undef Nil
+#import <mapnik/graphics.hpp>
+#import <mapnik/color.hpp>
+#import <mapnik/image_util.hpp>
+#include <mapnik/agg_renderer.hpp>
+#include <mapnik/load_map.hpp>
+#include <mapnik/datasource_cache.hpp>
+#include <mapnik/datasource.hpp>
+#define nil __DARWIN_NULL
+#define Nil __DARWIN_NULL
+
+#endif

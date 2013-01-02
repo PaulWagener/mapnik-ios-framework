@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D313D7F716944BFD0095B0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D7F616944BFD0095B0CB /* UIKit.framework */; };
+		D313D7F916944BFD0095B0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D7F816944BFD0095B0CB /* Foundation.framework */; };
+		D313D7FB16944BFD0095B0CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D7FA16944BFD0095B0CB /* CoreGraphics.framework */; };
+		D313D81A16944C670095B0CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D313D81516944C670095B0CB /* AppDelegate.m */; };
+		D313D81B16944C670095B0CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D313D81616944C670095B0CB /* main.m */; };
+		D313D81C16944C670095B0CB /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D313D81916944C670095B0CB /* ViewController.mm */; };
+		D313D83B16944DDD0095B0CB /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D81F16944DDD0095B0CB /* libboost_date_time.a */; };
+		D313D83C16944DDD0095B0CB /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82016944DDD0095B0CB /* libboost_filesystem.a */; };
+		D313D83D16944DDD0095B0CB /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82116944DDD0095B0CB /* libboost_regex.a */; };
+		D313D83E16944DDD0095B0CB /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82216944DDD0095B0CB /* libboost_signals.a */; };
+		D313D83F16944DDD0095B0CB /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82316944DDD0095B0CB /* libboost_system.a */; };
+		D313D84016944DDD0095B0CB /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82416944DDD0095B0CB /* libboost_thread.a */; };
+		D313D84116944DDD0095B0CB /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82516944DDD0095B0CB /* libcairo-gobject.a */; };
+		D313D84216944DDD0095B0CB /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82616944DDD0095B0CB /* libcairo-script-interpreter.a */; };
+		D313D84316944DDD0095B0CB /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82716944DDD0095B0CB /* libcairo.a */; };
+		D313D84416944DDD0095B0CB /* libcairomm-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82816944DDD0095B0CB /* libcairomm-1.0.a */; };
+		D313D84516944DDD0095B0CB /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82916944DDD0095B0CB /* libfreetype.a */; };
+		D313D84616944DDD0095B0CB /* libicudata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82A16944DDD0095B0CB /* libicudata.a */; };
+		D313D84716944DDD0095B0CB /* libicui18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82B16944DDD0095B0CB /* libicui18n.a */; };
+		D313D84816944DDD0095B0CB /* libicuio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82C16944DDD0095B0CB /* libicuio.a */; };
+		D313D84916944DDD0095B0CB /* libicule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82D16944DDD0095B0CB /* libicule.a */; };
+		D313D84A16944DDD0095B0CB /* libiculx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82E16944DDD0095B0CB /* libiculx.a */; };
+		D313D84B16944DDD0095B0CB /* libicutest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82F16944DDD0095B0CB /* libicutest.a */; };
+		D313D84C16944DDD0095B0CB /* libicutu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83016944DDD0095B0CB /* libicutu.a */; };
+		D313D84D16944DDD0095B0CB /* libicuuc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83116944DDD0095B0CB /* libicuuc.a */; };
+		D313D84E16944DDD0095B0CB /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83216944DDD0095B0CB /* libjpeg.a */; };
+		D313D84F16944DDD0095B0CB /* libmapnik.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83316944DDD0095B0CB /* libmapnik.a */; };
+		D313D85016944DDD0095B0CB /* libpixman-1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83416944DDD0095B0CB /* libpixman-1.a */; };
+		D313D85116944DDD0095B0CB /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83516944DDD0095B0CB /* libpng.a */; };
+		D313D85216944DDD0095B0CB /* libpng15.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83616944DDD0095B0CB /* libpng15.a */; };
+		D313D85316944DDD0095B0CB /* libproj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83716944DDD0095B0CB /* libproj.a */; };
+		D313D85416944DDD0095B0CB /* libsigc-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83816944DDD0095B0CB /* libsigc-2.0.a */; };
+		D313D85516944DDD0095B0CB /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83916944DDD0095B0CB /* libtiff.a */; };
+		D313D85616944DDD0095B0CB /* libtiffxx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D83A16944DDD0095B0CB /* libtiffxx.a */; };
+		D313D85816944DF50095B0CB /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D85716944DF50095B0CB /* libxml2.dylib */; };
+		D313D85A16944DFE0095B0CB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D85916944DFE0095B0CB /* libz.dylib */; };
+		D313D85C16944E0A0095B0CB /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D85B16944E0A0095B0CB /* libbz2.dylib */; };
+		D313D85E16944E180095B0CB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D313D85D16944E180095B0CB /* Default-568h@2x.png */; };
+		D313D86316944E7D0095B0CB /* countries.dbf in Resources */ = {isa = PBXBuildFile; fileRef = D313D85F16944E4E0095B0CB /* countries.dbf */; };
+		D313D86416944E7D0095B0CB /* countries.prj in Resources */ = {isa = PBXBuildFile; fileRef = D313D86016944E4E0095B0CB /* countries.prj */; };
+		D313D86516944E7D0095B0CB /* countries.shp in Resources */ = {isa = PBXBuildFile; fileRef = D313D86116944E4E0095B0CB /* countries.shp */; };
+		D313D86616944E7D0095B0CB /* countries.shx in Resources */ = {isa = PBXBuildFile; fileRef = D313D86216944E4E0095B0CB /* countries.shx */; };
+		D313D86816944E850095B0CB /* style.xml in Resources */ = {isa = PBXBuildFile; fileRef = D313D86716944E850095B0CB /* style.xml */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D313D7F316944BFD0095B0CB /* Mapnik-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapnik-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D313D7F616944BFD0095B0CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D313D7F816944BFD0095B0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D313D7FA16944BFD0095B0CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D313D81416944C670095B0CB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D313D81516944C670095B0CB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D313D81616944C670095B0CB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D313D81716944C670095B0CB /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		D313D81816944C670095B0CB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D313D81916944C670095B0CB /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		D313D81D16944C760095B0CB /* Mapnik-Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mapnik-Example-Info.plist"; sourceTree = "<group>"; };
+		D313D81F16944DDD0095B0CB /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_date_time.a; path = ../lib/libboost_date_time.a; sourceTree = "<group>"; };
+		D313D82016944DDD0095B0CB /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../lib/libboost_filesystem.a; sourceTree = "<group>"; };
+		D313D82116944DDD0095B0CB /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_regex.a; path = ../lib/libboost_regex.a; sourceTree = "<group>"; };
+		D313D82216944DDD0095B0CB /* libboost_signals.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_signals.a; path = ../lib/libboost_signals.a; sourceTree = "<group>"; };
+		D313D82316944DDD0095B0CB /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../lib/libboost_system.a; sourceTree = "<group>"; };
+		D313D82416944DDD0095B0CB /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = ../lib/libboost_thread.a; sourceTree = "<group>"; };
+		D313D82516944DDD0095B0CB /* libcairo-gobject.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairo-gobject.a"; path = "../lib/libcairo-gobject.a"; sourceTree = "<group>"; };
+		D313D82616944DDD0095B0CB /* libcairo-script-interpreter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairo-script-interpreter.a"; path = "../lib/libcairo-script-interpreter.a"; sourceTree = "<group>"; };
+		D313D82716944DDD0095B0CB /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = ../lib/libcairo.a; sourceTree = "<group>"; };
+		D313D82816944DDD0095B0CB /* libcairomm-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairomm-1.0.a"; path = "../lib/libcairomm-1.0.a"; sourceTree = "<group>"; };
+		D313D82916944DDD0095B0CB /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../lib/libfreetype.a; sourceTree = "<group>"; };
+		D313D82A16944DDD0095B0CB /* libicudata.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicudata.a; path = ../lib/libicudata.a; sourceTree = "<group>"; };
+		D313D82B16944DDD0095B0CB /* libicui18n.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicui18n.a; path = ../lib/libicui18n.a; sourceTree = "<group>"; };
+		D313D82C16944DDD0095B0CB /* libicuio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicuio.a; path = ../lib/libicuio.a; sourceTree = "<group>"; };
+		D313D82D16944DDD0095B0CB /* libicule.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicule.a; path = ../lib/libicule.a; sourceTree = "<group>"; };
+		D313D82E16944DDD0095B0CB /* libiculx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiculx.a; path = ../lib/libiculx.a; sourceTree = "<group>"; };
+		D313D82F16944DDD0095B0CB /* libicutest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicutest.a; path = ../lib/libicutest.a; sourceTree = "<group>"; };
+		D313D83016944DDD0095B0CB /* libicutu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicutu.a; path = ../lib/libicutu.a; sourceTree = "<group>"; };
+		D313D83116944DDD0095B0CB /* libicuuc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libicuuc.a; path = ../lib/libicuuc.a; sourceTree = "<group>"; };
+		D313D83216944DDD0095B0CB /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../lib/libjpeg.a; sourceTree = "<group>"; };
+		D313D83316944DDD0095B0CB /* libmapnik.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmapnik.a; path = ../lib/libmapnik.a; sourceTree = "<group>"; };
+		D313D83416944DDD0095B0CB /* libpixman-1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpixman-1.a"; path = "../lib/libpixman-1.a"; sourceTree = "<group>"; };
+		D313D83516944DDD0095B0CB /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../lib/libpng.a; sourceTree = "<group>"; };
+		D313D83616944DDD0095B0CB /* libpng15.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng15.a; path = ../lib/libpng15.a; sourceTree = "<group>"; };
+		D313D83716944DDD0095B0CB /* libproj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libproj.a; path = ../lib/libproj.a; sourceTree = "<group>"; };
+		D313D83816944DDD0095B0CB /* libsigc-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsigc-2.0.a"; path = "../lib/libsigc-2.0.a"; sourceTree = "<group>"; };
+		D313D83916944DDD0095B0CB /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = ../lib/libtiff.a; sourceTree = "<group>"; };
+		D313D83A16944DDD0095B0CB /* libtiffxx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiffxx.a; path = ../lib/libtiffxx.a; sourceTree = "<group>"; };
+		D313D85716944DF50095B0CB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D313D85916944DFE0095B0CB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D313D85B16944E0A0095B0CB /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+		D313D85D16944E180095B0CB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D313D85F16944E4E0095B0CB /* countries.dbf */ = {isa = PBXFileReference; lastKnownFileType = file; path = countries.dbf; sourceTree = "<group>"; };
+		D313D86016944E4E0095B0CB /* countries.prj */ = {isa = PBXFileReference; lastKnownFileType = text; path = countries.prj; sourceTree = "<group>"; };
+		D313D86116944E4E0095B0CB /* countries.shp */ = {isa = PBXFileReference; lastKnownFileType = file; path = countries.shp; sourceTree = "<group>"; };
+		D313D86216944E4E0095B0CB /* countries.shx */ = {isa = PBXFileReference; lastKnownFileType = file; path = countries.shx; sourceTree = "<group>"; };
+		D313D86716944E850095B0CB /* style.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = style.xml; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D313D7F016944BFD0095B0CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D313D85C16944E0A0095B0CB /* libbz2.dylib in Frameworks */,
+				D313D85A16944DFE0095B0CB /* libz.dylib in Frameworks */,
+				D313D85816944DF50095B0CB /* libxml2.dylib in Frameworks */,
+				D313D7F716944BFD0095B0CB /* UIKit.framework in Frameworks */,
+				D313D7F916944BFD0095B0CB /* Foundation.framework in Frameworks */,
+				D313D7FB16944BFD0095B0CB /* CoreGraphics.framework in Frameworks */,
+				D313D83B16944DDD0095B0CB /* libboost_date_time.a in Frameworks */,
+				D313D83C16944DDD0095B0CB /* libboost_filesystem.a in Frameworks */,
+				D313D83D16944DDD0095B0CB /* libboost_regex.a in Frameworks */,
+				D313D83E16944DDD0095B0CB /* libboost_signals.a in Frameworks */,
+				D313D83F16944DDD0095B0CB /* libboost_system.a in Frameworks */,
+				D313D84016944DDD0095B0CB /* libboost_thread.a in Frameworks */,
+				D313D84116944DDD0095B0CB /* libcairo-gobject.a in Frameworks */,
+				D313D84216944DDD0095B0CB /* libcairo-script-interpreter.a in Frameworks */,
+				D313D84316944DDD0095B0CB /* libcairo.a in Frameworks */,
+				D313D84416944DDD0095B0CB /* libcairomm-1.0.a in Frameworks */,
+				D313D84516944DDD0095B0CB /* libfreetype.a in Frameworks */,
+				D313D84616944DDD0095B0CB /* libicudata.a in Frameworks */,
+				D313D84716944DDD0095B0CB /* libicui18n.a in Frameworks */,
+				D313D84816944DDD0095B0CB /* libicuio.a in Frameworks */,
+				D313D84916944DDD0095B0CB /* libicule.a in Frameworks */,
+				D313D84A16944DDD0095B0CB /* libiculx.a in Frameworks */,
+				D313D84B16944DDD0095B0CB /* libicutest.a in Frameworks */,
+				D313D84C16944DDD0095B0CB /* libicutu.a in Frameworks */,
+				D313D84D16944DDD0095B0CB /* libicuuc.a in Frameworks */,
+				D313D84E16944DDD0095B0CB /* libjpeg.a in Frameworks */,
+				D313D84F16944DDD0095B0CB /* libmapnik.a in Frameworks */,
+				D313D85016944DDD0095B0CB /* libpixman-1.a in Frameworks */,
+				D313D85116944DDD0095B0CB /* libpng.a in Frameworks */,
+				D313D85216944DDD0095B0CB /* libpng15.a in Frameworks */,
+				D313D85316944DDD0095B0CB /* libproj.a in Frameworks */,
+				D313D85416944DDD0095B0CB /* libsigc-2.0.a in Frameworks */,
+				D313D85516944DDD0095B0CB /* libtiff.a in Frameworks */,
+				D313D85616944DDD0095B0CB /* libtiffxx.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D313D7EA16944BFD0095B0CB = {
+			isa = PBXGroup;
+			children = (
+				D313D86716944E850095B0CB /* style.xml */,
+				D313D85F16944E4E0095B0CB /* countries.dbf */,
+				D313D86016944E4E0095B0CB /* countries.prj */,
+				D313D86116944E4E0095B0CB /* countries.shp */,
+				D313D86216944E4E0095B0CB /* countries.shx */,
+				D313D85D16944E180095B0CB /* Default-568h@2x.png */,
+				D313D81D16944C760095B0CB /* Mapnik-Example-Info.plist */,
+				D313D81316944C670095B0CB /* Source */,
+				D313D7F516944BFD0095B0CB /* Frameworks */,
+				D313D7F416944BFD0095B0CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D313D7F416944BFD0095B0CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D313D7F316944BFD0095B0CB /* Mapnik-Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D313D7F516944BFD0095B0CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D313D85B16944E0A0095B0CB /* libbz2.dylib */,
+				D313D85916944DFE0095B0CB /* libz.dylib */,
+				D313D85716944DF50095B0CB /* libxml2.dylib */,
+				D313D81F16944DDD0095B0CB /* libboost_date_time.a */,
+				D313D82016944DDD0095B0CB /* libboost_filesystem.a */,
+				D313D82116944DDD0095B0CB /* libboost_regex.a */,
+				D313D82216944DDD0095B0CB /* libboost_signals.a */,
+				D313D82316944DDD0095B0CB /* libboost_system.a */,
+				D313D82416944DDD0095B0CB /* libboost_thread.a */,
+				D313D82516944DDD0095B0CB /* libcairo-gobject.a */,
+				D313D82616944DDD0095B0CB /* libcairo-script-interpreter.a */,
+				D313D82716944DDD0095B0CB /* libcairo.a */,
+				D313D82816944DDD0095B0CB /* libcairomm-1.0.a */,
+				D313D82916944DDD0095B0CB /* libfreetype.a */,
+				D313D82A16944DDD0095B0CB /* libicudata.a */,
+				D313D82B16944DDD0095B0CB /* libicui18n.a */,
+				D313D82C16944DDD0095B0CB /* libicuio.a */,
+				D313D82D16944DDD0095B0CB /* libicule.a */,
+				D313D82E16944DDD0095B0CB /* libiculx.a */,
+				D313D82F16944DDD0095B0CB /* libicutest.a */,
+				D313D83016944DDD0095B0CB /* libicutu.a */,
+				D313D83116944DDD0095B0CB /* libicuuc.a */,
+				D313D83216944DDD0095B0CB /* libjpeg.a */,
+				D313D83316944DDD0095B0CB /* libmapnik.a */,
+				D313D83416944DDD0095B0CB /* libpixman-1.a */,
+				D313D83516944DDD0095B0CB /* libpng.a */,
+				D313D83616944DDD0095B0CB /* libpng15.a */,
+				D313D83716944DDD0095B0CB /* libproj.a */,
+				D313D83816944DDD0095B0CB /* libsigc-2.0.a */,
+				D313D83916944DDD0095B0CB /* libtiff.a */,
+				D313D83A16944DDD0095B0CB /* libtiffxx.a */,
+				D313D7F616944BFD0095B0CB /* UIKit.framework */,
+				D313D7F816944BFD0095B0CB /* Foundation.framework */,
+				D313D7FA16944BFD0095B0CB /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D313D81316944C670095B0CB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D313D81416944C670095B0CB /* AppDelegate.h */,
+				D313D81516944C670095B0CB /* AppDelegate.m */,
+				D313D81616944C670095B0CB /* main.m */,
+				D313D81716944C670095B0CB /* Prefix.pch */,
+				D313D81816944C670095B0CB /* ViewController.h */,
+				D313D81916944C670095B0CB /* ViewController.mm */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D313D7F216944BFD0095B0CB /* Mapnik-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D313D81016944BFD0095B0CB /* Build configuration list for PBXNativeTarget "Mapnik-Example" */;
+			buildPhases = (
+				D313D7EF16944BFD0095B0CB /* Sources */,
+				D313D7F016944BFD0095B0CB /* Frameworks */,
+				D313D7F116944BFD0095B0CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mapnik-Example";
+			productName = "Mapnik-Example";
+			productReference = D313D7F316944BFD0095B0CB /* Mapnik-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D313D7EB16944BFD0095B0CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Paul Wagener";
+			};
+			buildConfigurationList = D313D7EE16944BFD0095B0CB /* Build configuration list for PBXProject "Mapnik-Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D313D7EA16944BFD0095B0CB;
+			productRefGroup = D313D7F416944BFD0095B0CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D313D7F216944BFD0095B0CB /* Mapnik-Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D313D7F116944BFD0095B0CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D313D86316944E7D0095B0CB /* countries.dbf in Resources */,
+				D313D86416944E7D0095B0CB /* countries.prj in Resources */,
+				D313D86516944E7D0095B0CB /* countries.shp in Resources */,
+				D313D86616944E7D0095B0CB /* countries.shx in Resources */,
+				D313D85E16944E180095B0CB /* Default-568h@2x.png in Resources */,
+				D313D86816944E850095B0CB /* style.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D313D7EF16944BFD0095B0CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D313D81A16944C670095B0CB /* AppDelegate.m in Sources */,
+				D313D81B16944C670095B0CB /* main.m in Sources */,
+				D313D81C16944C670095B0CB /* ViewController.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D313D80E16944BFD0095B0CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../include,
+					../include/freetype2,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D313D80F16944BFD0095B0CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../include,
+					../include/freetype2,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D313D81116944BFD0095B0CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/Mapnik-Example-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D313D81216944BFD0095B0CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Prefix.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/Mapnik-Example-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D313D7EE16944BFD0095B0CB /* Build configuration list for PBXProject "Mapnik-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D313D80E16944BFD0095B0CB /* Debug */,
+				D313D80F16944BFD0095B0CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D313D81016944BFD0095B0CB /* Build configuration list for PBXNativeTarget "Mapnik-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D313D81116944BFD0095B0CB /* Debug */,
+				D313D81216944BFD0095B0CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D313D7EB16944BFD0095B0CB /* Project object */;
+}
