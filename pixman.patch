@@ -1,0 +1,17 @@
+--- pixman/Makefile.am	2013-02-05 08:38:38.000000000 +0100
++++ Makefile.am	2013-02-05 08:38:49.000000000 +0100
+@@ -1,4 +1,4 @@
+-SUBDIRS = pixman demos test
++SUBDIRS = pixman demos
+ 
+ pkgconfigdir=$(libdir)/pkgconfig
+ pkgconfig_DATA=pixman-1.pc
+@@ -50,7 +50,7 @@
+ 
+ $(gpg_file): $(sha1_tgz)
+ 	@echo "Please enter your GPG password to sign the checksum."
+-	gpg --armor --sign $^ 
++	gpg --armor --sign $^
+ 
+ HASHFILES = $(sha1_tgz) $(sha1_tbz2) $(md5_tgz) $(md5_tbz2)
+ 

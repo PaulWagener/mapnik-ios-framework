@@ -18,6 +18,12 @@ lib/libmapnik.a: build_arches
 	cp -R build/armv7/include/mapnik include
 	cp -R build/armv7/include/boost include
 	cp -R build/armv7/include/unicode include
+	cp -R build/armv7/include/cairomm-1.0/cairomm include
+	cp -R build/armv7/include/cairomm-1.0/cairomm include
+	cp -R build/armv7/include/sigc++-2.0/sigc++ include
+	cp libsigc++/sigc++config.h include/
+	cp build/armv7/include/cairo/*.h include/
+	cp -R build/armv7/include/fontconfig include/
 	cp build/armv7/include/ft2build.h include
 	cp build/armv7/include/proj_api.h include
 
@@ -36,6 +42,7 @@ lib/libmapnik.a: build_arches
 update:
 	git submodule init
 	git submodule update
+	-patch -Np0 < pixman.patch
 
 # Build separate architectures
 build_arches:
@@ -51,12 +58,19 @@ CXX = ${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 CC = ${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CFLAGS = -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
 CXXFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -I${IOS_SDK}/usr/include -arch ${ARCH}
-LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${IOS_SDK}/usr/lib -L${LIBDIR} -arch ${ARCH}
+LDFLAGS = -stdlib=libc++ -isysroot ${IOS_SDK} -L${LIBDIR} -L${IOS_SDK}/usr/lib -arch ${ARCH}
+
+PIXMAN_CFLAGS_armv7 = $(CFLAGS)
+PIXMAN_CFLAGS_armv7s = $(CFLAGS)
+PIXMAN_CFLAGS_i386 = $(CFLAGS) -DPIXMAN_NO_TLS
+PIXMAN_CXXFLAGS_armv7 = $(CXXFLAGS)
+PIXMAN_CXXFLAGS_armv7s = $(CXXFLAGS)
+PIXMAN_CXXFLAGS_i386 = $(CXXFLAGS) -DPIXMAN_NO_TLS
 
 arch: ${LIBDIR}/libmapnik.a
-	# Making libmapnik 
+	# Making libmapnik
 
-${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libcairo.a ${LIBDIR}/libfreetype.a ${LIBDIR}/libcairomm-1.0.a 
+${LIBDIR}/libmapnik.a: ${LIBDIR}/libpng.a ${LIBDIR}/libproj.a ${LIBDIR}/libtiff.a ${LIBDIR}/libjpeg.a ${LIBDIR}/libicuuc.a ${LIBDIR}/libboost_system.a ${LIBDIR}/libcairo.a ${LIBDIR}/libfreetype.a ${LIBDIR}/libcairomm-1.0.a
 	# Building architecture: ${ARCH}
 	cd mapnik && ./configure CXX=${CXX} CC=${CC} \
 		CUSTOM_CFLAGS="${CFLAGS} -I${IOS_SDK}/usr/include/libxml2" \
@@ -128,12 +142,12 @@ ${LIBDIR}/libfreetype.a:
 
 # Pixman
 ${LIBDIR}/libpixman-1.a:
-	cd pixman && ./autogen.sh && env PNG_CFLAGS="-I${INCLUDEDIR}" PNG_LIBS="-L${LIBDIR} -lpng" \
-		CXX=${CXX} CC=${CC} CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+	cd pixman &&  ./autogen.sh && env PNG_CFLAGS="-I${INCLUDEDIR}" PNG_LIBS="-L${LIBDIR} -lpng" \
+		CXX=${CXX} CC=${CC} CFLAGS="${PIXMAN_CFLAGS_$(ARCH)}" CXXFLAGS="${PIXMAN_CXXFLAGS_$(ARCH)}" \
 		LDFLAGS="${LDFLAGS}" ./configure --host=arm-apple-darwin --disable-shared --prefix=${PREFIX} && make install
 
 # Cairo
-${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfreetype.a
+${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfreetype.a ${LIBDIR}/libfontconfig.a
 	env NOCONFIGURE=1 cairo/autogen.sh
 
 	-patch -Np0 < cairo.patch
@@ -149,13 +163,13 @@ ${LIBDIR}/libcairo.a: ${LIBDIR}/libpixman-1.a ${LIBDIR}/libpng.a ${LIBDIR}/libfr
 	CC="${CC} ${CFLAGS} -I${INCLUDEDIR}/pixman-1" \
 	CFLAGS="${CFLAGS} -DCAIRO_NO_MUTEX=1" \
 	CXXFLAGS="-DCAIRO_NO_MUTEX=1 ${CXXFLAGS}" \
-	LDFLAGS="-framework Foundation -framework CoreGraphics -lpng -lpixman-1 -lfreetype ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft && make clean install
+	LDFLAGS="-framework Foundation -framework CoreGraphics -lpng -lpixman-1 -lfreetype -lfontconfig ${LDFLAGS}" ./configure --host=arm-apple-darwin --prefix=${PREFIX} --enable-static --disable-shared --enable-quartz --disable-quartz-font --without-x --disable-xlib --disable-xlib-xrender --disable-xcb --disable-xlib-xcb --disable-xcb-shm --enable-ft --disable-full-testing && make clean install
 
 # CairoMM
 ${LIBDIR}/libcairomm-1.0.a: ${CURDIR}/cairomm ${LIBDIR}/libsigc-2.0.a
 	cd cairomm && env \
 	CAIROMM_CFLAGS="-I${INCLUDEDIR} -I${INCLUDEDIR}/freetype2 -I${INCLUDEDIR}/cairo -I${INCLUDEDIR}/sigc++-2.0 -I${LIBDIR}/sigc++-2.0/include" \
-	CAIROMM_LIBS="-L${LIBDIR} -lcairo -lsigc-2.0" \
+	CAIROMM_LIBS="-L${LIBDIR} -lcairo -lsigc-2.0 -lfontconfig" \
 	CXX=${CXX} \
 	CC=${CC} \
 	CFLAGS="${CFLAGS}" \
@@ -186,5 +200,39 @@ ${CURDIR}/libsigc++:
 	mv libsigc++-2.3.1 libsigc++
 	touch libsigc++
 
+${LIBDIR}/libfontconfig.a: ${CURDIR}/fontconfig
+	cd fontconfig && env LIBTOOL=${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool \
+	LIBXML2_CFLAGS="-I$(SYSROOT)/usr/include/libxml2" \
+	LIBXML2_LIBS="-lxml2 -lz -lpthread -licucore -lm" \
+	CXX=${CXX} \
+	CC=${CC} \
+	CFLAGS="${CFLAGS}" \
+	CXXFLAGS="${CXXFLAGS}" \
+	LDFLAGS="-Wl,-arch -Wl,${ARCH} -arch_only ${ARCH} ${LDFLAGS}" \
+	./configure --host=arm-apple-darwin --enable-libxml2 --prefix=${PREFIX} --with-freetype-config=$PREFIX/bin/freetype-config --disable-shared --enable-static && make clean install
+
+${CURDIR}/fontconfig:
+	curl http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.10.2.tar.bz2 > fontconfig.tar.bz2
+	tar xvf fontconfig.tar.bz2
+	rm fontconfig.tar.bz2
+	mv fontconfig-2.10.2 fontconfig
+	touch fontconfig
+
+${LIBDIR}/libsqlite3.a: ${CURDIR}/sqlite3
+	cd sqlite3 && env LIBTOOL=${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool \
+	CXX=${CXX} \
+	CC=${CC} \
+	CFLAGS="${CFLAGS} -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_RTREE=1 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1" \
+	CXXFLAGS="${CXXFLAGS} -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_RTREE=1 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1" \
+	LDFLAGS="-Wl,-arch -Wl,${ARCH} -arch_only ${ARCH} ${LDFLAGS}" \
+	./configure --host=arm-apple-darwin --prefix=${PREFIX} --disable-dynamic-extension --enable-static && make clean install
+
+${CURDIR}/sqlite3:
+	curl http://www.sqlite.org/sqlite-autoconf-3071502.tar.gz > sqlite3.tar.gz
+	tar xzvf sqlite3.tar.gz
+	rm sqlite3.tar.gz
+	mv sqlite-autoconf-3071502 sqlite3
+	touch sqlite3
+
 clean:
-	rm -rf libmapnik.a build cairo cairomm libsigc++ boost freetype libicu libicu_host libjpeg libpng libproj libtiff mapnik pixman
+	rm -rf libmapnik.a build cairo cairomm libsigc++ boost freetype libicu libicu_host libjpeg libpng libproj libtiff mapnik pixman fontconfig sqlite3
