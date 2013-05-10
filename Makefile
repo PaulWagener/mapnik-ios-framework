@@ -200,10 +200,11 @@ ${CURDIR}/libsigc++:
 	mv libsigc++-2.3.1 libsigc++
 	touch libsigc++
 
-${LIBDIR}/libfontconfig.a: ${CURDIR}/fontconfig
+${LIBDIR}/libfontconfig.a: ${CURDIR}/fontconfig ${LIBDIR}/libfreetype.a
 	cd fontconfig && env LIBTOOL=${XCODE_DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool \
 	LIBXML2_CFLAGS="-I$(SYSROOT)/usr/include/libxml2" \
 	LIBXML2_LIBS="-lxml2 -lz -lpthread -licucore -lm" \
+	PKG_CONFIG_PATH=${LIBDIR}/pkgconfig \
 	CXX=${CXX} \
 	CC=${CC} \
 	CFLAGS="${CFLAGS}" \
