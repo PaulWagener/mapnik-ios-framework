@@ -50,6 +50,7 @@
 		D313D86516944E7D0095B0CB /* countries.shp in Resources */ = {isa = PBXBuildFile; fileRef = D313D86116944E4E0095B0CB /* countries.shp */; };
 		D313D86616944E7D0095B0CB /* countries.shx in Resources */ = {isa = PBXBuildFile; fileRef = D313D86216944E4E0095B0CB /* countries.shx */; };
 		D313D86816944E850095B0CB /* style.xml in Resources */ = {isa = PBXBuildFile; fileRef = D313D86716944E850095B0CB /* style.xml */; };
+		D3F3A8FC173E7BE500E2D62B /* libfontconfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F3A8FB173E7BE500E2D62B /* libfontconfig.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		D313D86116944E4E0095B0CB /* countries.shp */ = {isa = PBXFileReference; lastKnownFileType = file; path = countries.shp; sourceTree = "<group>"; };
 		D313D86216944E4E0095B0CB /* countries.shx */ = {isa = PBXFileReference; lastKnownFileType = file; path = countries.shx; sourceTree = "<group>"; };
 		D313D86716944E850095B0CB /* style.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = style.xml; sourceTree = "<group>"; };
+		D3F3A8FB173E7BE500E2D62B /* libfontconfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfontconfig.a; path = ../lib/libfontconfig.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				D313D85416944DDD0095B0CB /* libsigc-2.0.a in Frameworks */,
 				D313D85516944DDD0095B0CB /* libtiff.a in Frameworks */,
 				D313D85616944DDD0095B0CB /* libtiffxx.a in Frameworks */,
+				D3F3A8FC173E7BE500E2D62B /* libfontconfig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +178,7 @@
 		D313D7F516944BFD0095B0CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3F3A8FB173E7BE500E2D62B /* libfontconfig.a */,
 				D313D85B16944E0A0095B0CB /* libbz2.dylib */,
 				D313D85916944DFE0095B0CB /* libz.dylib */,
 				D313D85716944DF50095B0CB /* libxml2.dylib */,

@@ -12,6 +12,14 @@
 *.la
 *.a
 
-build
-libsigc++
-cairomm
+.DS_Store
+
+/license.html
+
+/build
+/include
+
+/libsigc++
+/cairomm
+/fontconfig
+
