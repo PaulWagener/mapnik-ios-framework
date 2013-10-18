@@ -213,10 +213,10 @@ ${LIBDIR}/libfontconfig.a: ${CURDIR}/fontconfig ${LIBDIR}/libfreetype.a
 	./configure --host=arm-apple-darwin --enable-libxml2 --prefix=${PREFIX} --with-freetype-config=$PREFIX/bin/freetype-config --disable-shared --enable-static && make clean install
 
 ${CURDIR}/fontconfig:
-	curl http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.10.2.tar.bz2 > fontconfig.tar.bz2
-	tar xvf fontconfig.tar.bz2
-	rm fontconfig.tar.bz2
-	mv fontconfig-2.10.2 fontconfig
+	curl http://cgit.freedesktop.org/fontconfig/snapshot/fontconfig-2.11.0.tar.gz > fontconfig.tar.gz
+	tar xvf fontconfig.tar.gz
+	rm fontconfig.tar.gz
+	mv fontconfig-2.11.0 fontconfig
 	touch fontconfig
 
 ${LIBDIR}/libsqlite3.a: ${CURDIR}/sqlite3
