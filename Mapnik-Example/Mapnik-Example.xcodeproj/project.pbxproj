@@ -72,7 +72,6 @@
 		D313D82216944DDD0095B0CB /* libboost_signals.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_signals.a; path = ../lib/libboost_signals.a; sourceTree = "<group>"; };
 		D313D82316944DDD0095B0CB /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../lib/libboost_system.a; sourceTree = "<group>"; };
 		D313D82416944DDD0095B0CB /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = ../lib/libboost_thread.a; sourceTree = "<group>"; };
-		D313D82516944DDD0095B0CB /* libcairo-gobject.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairo-gobject.a"; path = "../lib/libcairo-gobject.a"; sourceTree = "<group>"; };
 		D313D82616944DDD0095B0CB /* libcairo-script-interpreter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairo-script-interpreter.a"; path = "../lib/libcairo-script-interpreter.a"; sourceTree = "<group>"; };
 		D313D82716944DDD0095B0CB /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = ../lib/libcairo.a; sourceTree = "<group>"; };
 		D313D82816944DDD0095B0CB /* libcairomm-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairomm-1.0.a"; path = "../lib/libcairomm-1.0.a"; sourceTree = "<group>"; };
@@ -189,7 +188,6 @@
 				D313D82216944DDD0095B0CB /* libboost_signals.a */,
 				D313D82316944DDD0095B0CB /* libboost_system.a */,
 				D313D82416944DDD0095B0CB /* libboost_thread.a */,
-				D313D82516944DDD0095B0CB /* libcairo-gobject.a */,
 				D313D82616944DDD0095B0CB /* libcairo-script-interpreter.a */,
 				D313D82716944DDD0095B0CB /* libcairo.a */,
 				D313D82816944DDD0095B0CB /* libcairomm-1.0.a */,
