@@ -20,7 +20,6 @@
 		D313D83E16944DDD0095B0CB /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82216944DDD0095B0CB /* libboost_signals.a */; };
 		D313D83F16944DDD0095B0CB /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82316944DDD0095B0CB /* libboost_system.a */; };
 		D313D84016944DDD0095B0CB /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82416944DDD0095B0CB /* libboost_thread.a */; };
-		D313D84116944DDD0095B0CB /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82516944DDD0095B0CB /* libcairo-gobject.a */; };
 		D313D84216944DDD0095B0CB /* libcairo-script-interpreter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82616944DDD0095B0CB /* libcairo-script-interpreter.a */; };
 		D313D84316944DDD0095B0CB /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82716944DDD0095B0CB /* libcairo.a */; };
 		D313D84416944DDD0095B0CB /* libcairomm-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D82816944DDD0095B0CB /* libcairomm-1.0.a */; };
@@ -125,7 +124,6 @@
 				D313D83E16944DDD0095B0CB /* libboost_signals.a in Frameworks */,
 				D313D83F16944DDD0095B0CB /* libboost_system.a in Frameworks */,
 				D313D84016944DDD0095B0CB /* libboost_thread.a in Frameworks */,
-				D313D84116944DDD0095B0CB /* libcairo-gobject.a in Frameworks */,
 				D313D84216944DDD0095B0CB /* libcairo-script-interpreter.a in Frameworks */,
 				D313D84316944DDD0095B0CB /* libcairo.a in Frameworks */,
 				D313D84416944DDD0095B0CB /* libcairomm-1.0.a in Frameworks */,
