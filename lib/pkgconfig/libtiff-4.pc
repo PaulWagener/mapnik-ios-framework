@@ -1,0 +1,11 @@
+prefix=/Users/luobo/Documents/Developer/mapnik-ios-framework/build/i386
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libtiff
+Description:  Tag Image File Format (TIFF) library.
+Version: 4.0.1
+Libs: -L${libdir} -ltiff
+Libs.private: -lz 
+Cflags: -I${includedir}
