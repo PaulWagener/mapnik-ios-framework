@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D122F72B180D1AAA00A8EDD5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D122F72A180D1AAA00A8EDD5 /* libsqlite3.dylib */; };
 		D313D7F716944BFD0095B0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D7F616944BFD0095B0CB /* UIKit.framework */; };
 		D313D7F916944BFD0095B0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D7F816944BFD0095B0CB /* Foundation.framework */; };
 		D313D7FB16944BFD0095B0CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D313D7FA16944BFD0095B0CB /* CoreGraphics.framework */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D122F72A180D1AAA00A8EDD5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D313D7F316944BFD0095B0CB /* Mapnik-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapnik-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D313D7F616944BFD0095B0CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D313D7F816944BFD0095B0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D122F72B180D1AAA00A8EDD5 /* libsqlite3.dylib in Frameworks */,
 				D313D85C16944E0A0095B0CB /* libbz2.dylib in Frameworks */,
 				D313D85A16944DFE0095B0CB /* libz.dylib in Frameworks */,
 				D313D85816944DF50095B0CB /* libxml2.dylib in Frameworks */,
@@ -208,6 +211,7 @@
 				D313D83616944DDD0095B0CB /* libpng15.a */,
 				D313D83716944DDD0095B0CB /* libproj.a */,
 				D313D83816944DDD0095B0CB /* libsigc-2.0.a */,
+				D122F72A180D1AAA00A8EDD5 /* libsqlite3.dylib */,
 				D313D83916944DDD0095B0CB /* libtiff.a */,
 				D313D83A16944DDD0095B0CB /* libtiffxx.a */,
 				D313D7F616944BFD0095B0CB /* UIKit.framework */,
